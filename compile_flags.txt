@@ -1,4 +1,6 @@
 -Iinclude
+-Iinclude/entities
+-Iinclude/entities/player
 -std=c++17
 -x
 c++
