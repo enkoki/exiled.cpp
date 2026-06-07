@@ -4,6 +4,18 @@
 #include "Enemy.h"
 #include <cstddef>
 #include <iostream>
+#include <unistd.h>
+
+void logOutAnimation(){
+    std::cout << "\nLogging Off ";
+    std::cout.flush();
+    for(int i = 0; i < 5; i++){
+        usleep(500000); // 0.5s
+        std::cout << ". ";
+        std::cout.flush();
+    }
+    std::cout << "\n";
+}
 
 std::string getName() {
     using namespace std;
@@ -30,6 +42,7 @@ int main() {
     Player* player = nullptr;
     if(classChoice == 1){
         player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
+        sleep(1);
         std::cout << "You choose Warrior, " << player->getName() << '\n';
     }
     else{
@@ -37,7 +50,9 @@ int main() {
         return 0;
     }
 
-   std::cout << "Thou are welcomed, Tarnished\n";
+    sleep(1);
+    std::cout << "Thou are welcomed, Tarnished\n";
+    sleep(1);
     std::cout << "Press Enter to Start the Game\n";
     std::cin.ignore();
     std::cin.get();
@@ -57,7 +72,7 @@ int main() {
         }
     }
 
-    std::cout << "\nLogging Off . . . . . .\n";
+    logOutAnimation();
     delete player;
     return 0;
 }
