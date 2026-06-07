@@ -23,22 +23,41 @@ int chooseClass() {
 }
 
 int main() {
-    std::cout << "===== Welcome to Exiled =====\n";
+    std::cout << "\n===== Welcome to Exiled =====\n";
     std::string name = getName();
     int classChoice = chooseClass();
     
     Player* player = nullptr;
     if(classChoice == 1){
         player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
-        std::cout << "You choose Warrior, Tarnished " << player->getName() << '\n';
+        std::cout << "You choose Warrior, " << player->getName() << '\n';
     }
     else{
         std::cout << "Class Not Available yet";
         return 0;
     }
 
-    std::cout << "Thou are welcomed, Tarnished " << name << "!\n";
+   std::cout << "Thou are welcomed, Tarnished\n";
+    std::cout << "Press Enter to Start the Game\n";
+    std::cin.ignore();
+    std::cin.get();
 
+    while(1){
+        std::cout << "\n===== Main Menu =====\n";
+        std::cout << "1. Battle\n2. Inventory (WIP)\n3. Exit\nSelect Action: ";
+        int menuChoice {};
+        std::cin >> menuChoice;
+        if(menuChoice == 3){
+            break;
+        }
+        switch(menuChoice){
+            case 1: break;
+            case 2: break;
+            default: std::cout << "Invalid choice.\n"; break;
+        }
+    }
+
+    std::cout << "\nLogging Off . . . . . .\n";
     delete player;
     return 0;
 }
