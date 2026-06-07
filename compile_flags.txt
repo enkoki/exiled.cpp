@@ -1,0 +1,4 @@
+-Iinclude
+-std=c++17
+-x
+c++
