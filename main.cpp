@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Warrior.h"
 #include "Enemy.h"
+#include <cstddef>
 #include <iostream>
 
 std::string getName() {
@@ -26,6 +27,18 @@ int main() {
     std::string name = getName();
     int classChoice = chooseClass();
     
+    Player* player = nullptr;
+    if(classChoice == 1){
+        player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
+        std::cout << "You choose Warrior, Tarnished " << player->getName() << '\n';
+    }
+    else{
+        std::cout << "Class Not Available yet";
+        return 0;
+    }
+
     std::cout << "Thou are welcomed, Tarnished " << name << "!\n";
+
+    delete player;
     return 0;
 }
