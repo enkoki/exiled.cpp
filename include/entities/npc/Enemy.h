@@ -7,11 +7,12 @@ class Enemy : public Character{
 private:
     int expReward;
     int goldReward;
+    int bleedResistance;
     std::string enemyType;
 
 public:
     Enemy();
-    Enemy(std::string name, int hp, int attack, int defense, int level, int expReward, int goldReward, std::string enemyType);    
+    Enemy(std::string name, int hp, int attack, int defense, int level, int expReward, int goldReward, int bleedResistance, std::string enemyType);
     Enemy(const Enemy& other);
 
     virtual ~Enemy();
@@ -21,6 +22,8 @@ public:
 
     int getExpReward();
     int getGoldReward();
+    int getBleedResistance();
+    
     std::string getEnemyType();
 
 };

@@ -7,16 +7,18 @@ Enemy::Enemy() : Character() {
     enemyType = "Goblin";
 }
 
-Enemy::Enemy(std::string name, int hp, int attack, int defense, int level, int expReward, int goldReward, std::string enemyType) 
+Enemy::Enemy(std::string name, int hp, int attack, int defense, int level, int expReward, int goldReward, int bleedResistance,  std::string enemyType) 
     : Character(name, hp, attack, defense, level) {
         this->expReward = expReward;
         this->goldReward = goldReward;
+        this->bleedResistance = bleedResistance;
         this->enemyType = enemyType;
 }
 
 Enemy::Enemy(const Enemy& other): Character(other){
     expReward = other.expReward;
     goldReward = other.goldReward;
+    bleedResistance = other.bleedResistance;
     enemyType = other.enemyType;
 } 
 

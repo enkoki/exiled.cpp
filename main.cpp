@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "Player.h"
+#include "Samurai.h"
 #include "Warrior.h"
 #include "Enemy.h"
 #include <cstddef>
@@ -40,14 +41,20 @@ int main() {
     int classChoice = chooseClass();
     
     Player* player = nullptr;
-    if(classChoice == 1){
-        player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
-        sleep(1);
-        std::cout << "You choose Warrior, " << player->getName() << '\n';
-    }
-    else{
-        std::cout << "Class Not Available yet";
-        return 0;
+    switch(classChoice){
+        case 1:
+            player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
+            sleep(1);
+            std::cout << "You choose Warrior, " << player->getName() << '\n';
+        case 2:
+            player = new Samurai(name, 120, 27, 13, 9, 0, 0, 0);
+            sleep(1);
+            std::cout << "You choose Samurai, " << player->getName() << '\n';
+        case 3: break;
+        case 4: break;
+        default:
+            std::cout << "Class Not Available yet";
+            return 404;
     }
 
     sleep(1);
