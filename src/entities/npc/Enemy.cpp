@@ -42,4 +42,5 @@ void Enemy::displayInfo() {
 
 int Enemy::getExpReward(){ return expReward; }
 int Enemy::getGoldReward(){ return goldReward; }
+int Enemy::getBleedResistance(){ return bleedResistance; }
 std::string Enemy::getEnemyType(){ return enemyType; }

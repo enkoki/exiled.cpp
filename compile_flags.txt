@@ -1,4 +1,5 @@
 -Iinclude
+-Iinclude/battle
 -Iinclude/entities
 -Iinclude/entities/player
 -Iinclude/entities/player/classes

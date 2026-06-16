@@ -1,9 +1,7 @@
-#include "Character.h"
 #include "Player.h"
 #include "Samurai.h"
 #include "Warrior.h"
 #include "Enemy.h"
-#include <cstddef>
 #include <iostream>
 #include <unistd.h>
 
@@ -46,10 +44,12 @@ int main() {
             player = new Warrior(name, 110, 26, 11, 8, 0, 0, 0);
             sleep(1);
             std::cout << "You choose Warrior, " << player->getName() << '\n';
+            break;
         case 2:
             player = new Samurai(name, 120, 27, 13, 9, 0, 0, 0);
             sleep(1);
             std::cout << "You choose Samurai, " << player->getName() << '\n';
+            break;
         case 3: break;
         case 4: break;
         default:
@@ -66,10 +66,10 @@ int main() {
 
     while(1){
         std::cout << "\n===== Main Menu =====\n";
-        std::cout << "1. Battle\n2. Inventory (WIP)\n3. Exit\nSelect Action: ";
+        std::cout << "1. Battle\n2. Dungeon\n3. Status\n4. Inventory (WIP)\n5. Exit\nSelect Action: ";
         int menuChoice {};
         std::cin >> menuChoice;
-        if(menuChoice == 3){
+        if(menuChoice == 5){
             break;
         }
         switch(menuChoice){
