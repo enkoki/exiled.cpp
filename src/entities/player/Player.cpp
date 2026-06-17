@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iomanip>
 #include <iostream>
 
 Player::Player() : Character() {
@@ -32,15 +33,21 @@ void Player::attackAction(){
 }
 
 void Player::displayInfo() {
-    std::cout << "=== Player Info ===\n";
-    std::cout << "Name: " << name << "\n";
-    std::cout << "Class: " << className << "\n";
-    std::cout << "HP: " << hp << "/" << maxHp << "\n";
-    std::cout << "Attack: " << attack << "\n";
-    std::cout << "Defense: " << defense << "\n";
-    std::cout << "Level: " << level << "\n";
-    std::cout << "EXP: " << exp << "/" << expToLevel << "\n";
-    std::cout << "Gold: " << gold << "\n";
+    std::cout << "\n╔══════════════════════════════════════════╗\n";
+    std::cout << "║                                          ║\n";
+    std::cout << "║  Name  : " << std::left << std::setw(13) << name 
+              << "Class  : " << std::setw(10) << className << "║\n";
+    std::cout << "║  Level : " << std::left << std::setw(13) << level 
+              << "EXP    : " << std::setw(10) << (std::to_string(exp) + "/" + std::to_string(expToLevel)) << "║\n";
+    std::cout << "║                                          ║\n";
+    std::cout << "╠══════════════════════════════════════════╣\n";
+    std::cout << "║                                          ║\n";
+    std::cout << "║  HP      : " << std::setw(30) << (std::to_string(hp) + "/" + std::to_string(maxHp)) << "║\n";
+    std::cout << "║  Attack  : " << std::setw(30) << attack << "║\n";
+    std::cout << "║  Defense : " << std::setw(30) << defense << "║\n";
+    std::cout << "║  Gold    : " << std::setw(30) << gold << "║\n";
+    std::cout << "║                                          ║\n";
+    std::cout << "╚══════════════════════════════════════════╝\n";
 }
 
 int Player::getExp(){ return exp; }
