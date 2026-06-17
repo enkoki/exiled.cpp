@@ -68,4 +68,8 @@ void Character::takeDamage(int damage) {
     std::cout << name << " took " << actualDamage << " damage! HP: " << hp << "/" << maxHp << "\n";
 }
 
+void Character::setHp(int hp) {
+    this->hp = hp;
+}
+
 

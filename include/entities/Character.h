@@ -30,6 +30,7 @@ public:
 
     bool isAlive();
     void takeDamage(int damage);
+    void setHp(int hp);
 };
 
 #endif

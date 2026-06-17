@@ -1,8 +1,10 @@
+#include "Battle.h"
 #include "Player.h"
 #include "Samurai.h"
 #include "Warrior.h"
 #include "Enemy.h"
 #include <iostream>
+#include <string>
 #include <unistd.h>
 
 void logOutAnimation(){
@@ -20,7 +22,7 @@ std::string getName() {
     using namespace std;
     string name;
     cout << "Enter your name: ";
-    cin >> name;
+    std::getline(cin, name);
     return name;
 }
 
@@ -73,8 +75,15 @@ int main() {
             break;
         }
         switch(menuChoice){
-            case 1: break;
+            case 1:{
+                Enemy* enemy = new Enemy("Goblin", 50, 10, 3, 1, 30, 10, 5, "Goblin");
+                Battle battle(player, enemy);
+                battle.start();
+                delete enemy;
+                break;
+            }
             case 2: break;
+            case 3: player->displayInfo(); break;
             default: std::cout << "Invalid choice.\n"; break;
         }
     }
