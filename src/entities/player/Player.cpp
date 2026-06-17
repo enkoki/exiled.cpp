@@ -29,7 +29,7 @@ Player::~Player() {
 }
 
 void Player::attackAction(){
-    std::cout << name << "the" << className << " attacks for " << attack << " damage.\n";
+    std::cout << name << " the" << className << " attacks for " << attack << " damage.\n";
 }
 
 void Player::displayInfo() {
