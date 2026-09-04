@@ -3,21 +3,29 @@
 
 #include "Enemy.h"
 #include "Player.h"
-class Battle{
-private:
-    Player* player;
-    Enemy* enemy;
-    bool playerWon;
-public:
-    Battle(Player* player, Enemy* enemy);
-    ~Battle();
 
-    void start();
-    void showStats();
-    void playerTurn();
-    void enemyTurn();
-    bool isOver();
-    bool didPlayerWin();
+class Battle {
+
+private:
+  Player *player;
+  Enemy *enemy;
+
+  bool playerWon;
+  bool fled;
+
+public:
+  Battle(Player *player, Enemy *enemy);
+  ~Battle();
+
+  void start();
+
+  void showStats();
+  void playerTurn();
+  void enemyTurn();
+
+  bool isOver();
+  bool didPlayerWin();
+  bool didPlayerFlee();
 };
 
 #endif

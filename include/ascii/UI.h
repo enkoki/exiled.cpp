@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace UI {
 
@@ -14,4 +15,20 @@ namespace UI {
 
     void statusHeader();
 
+    void battleHeader();
+
+    void battleStats(
+        const std::string& playerName,
+        int playerHp,
+        int playerMaxHp,
+        int playerAttack,
+        int playerDefense,
+        const std::string& enemyName,
+        int enemyHp,
+        int enemyMaxHp,
+        int enemyAttack,
+        int enemyDefense
+    );
+
+    void battleMenu();
 }

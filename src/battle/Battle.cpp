@@ -1,87 +1,141 @@
 #include "Battle.h"
-#include "Enemy.h"
-#include "Player.h"
+#include "ascii/Colors.h"
+#include "ascii/UI.h"
 #include <iostream>
 #include <unistd.h>
 
-Battle::Battle(Player* player, Enemy* enemy){
-    this->player = player;
-    this->enemy = enemy;
-};
+Battle::Battle(Player *player, Enemy *enemy) {
 
-Battle::~Battle(){
-    std::cout << "The Battle has ended!\n";
+  this->player = player;
+  this->enemy = enemy;
+
+  playerWon = false;
+  fled = false;
 }
 
-void Battle::showStats(){
-    int playerHP = player->getHp();
-    int enemyHP = enemy->getHp();   
-    std::cout <<"==== Battle ====\n";
-    std::cout << player->getName() << " : " << player->getHp() << "/" << player->getMaxHp() <<'\n';
-    std::cout << enemy->getName() << " : " << enemy->getHp() << "/" << enemy->getMaxHp() << '\n';
+Battle::~Battle() { std::cout << "The Battle has ended!\n"; }
 
-};
+void Battle::showStats() {
 
-bool Battle::isOver(){
-    int playerHP = player->getHp();
-    int enemyHP = enemy->getHp();
-    
-    if(playerHP <= 0 || enemyHP <= 0){
-        return true;
+  UI::battleHeader();
+
+  UI::battleStats(player->getName(), player->getHp(), player->getMaxHp(),
+                  player->getAttack(), player->getDefense(),
+
+                  enemy->getName(), enemy->getHp(), enemy->getMaxHp(),
+                  enemy->getAttack(), enemy->getDefense());
+}
+
+bool Battle::isOver() {
+
+  return !player->isAlive() || !enemy->isAlive() || fled;
+}
+
+bool Battle::didPlayerWin() { return enemy->getHp() <= 0; }
+
+bool Battle::didPlayerFlee() { return fled; }
+
+void Battle::playerTurn() {
+
+  int choice{};
+
+  while (true) {
+
+    UI::battleMenu();
+
+    std::cin >> choice;
+
+    switch (choice) {
+
+    case 1:
+
+      player->attackAction();
+
+      enemy->takeDamage(player->getAttack());
+
+      return;
+
+    case 2:
+
+      std::cout << "Work In Progress\n";
+
+      break;
+
+    case 3:
+
+      std::cout << "You fled from the battle!\n";
+
+      fled = true;
+
+      return;
+
+    default:
+
+      std::cout << "Invalid Choice\n";
+
+      break;
     }
-    return false;
-};
+  }
+}
 
-bool Battle::didPlayerWin(){
-   return enemy->getHp() <= 0;
-};
+void Battle::enemyTurn() {
 
-void Battle::playerTurn(){
-    int ongoing = 1;
-    int choice;
-    while (true){
-        std::cout << "1. Attack\n2. Bag [WIP]\n3. Run\n";
-        std::cin >> choice;
-        if (choice == 3){
-            break;
-        }
-        switch(choice){
-            case 1:
-                player->attackAction();
-                enemy->takeDamage(player->getAttack());
-                return;
-            case 2:
-                std::cout << "Work In Progress\n";
-                break;
-            default:
-                std::cout << "Invalid Choice\n";
-        }
+  std::cout << "\n";
+
+  enemy->attackAction();
+
+  player->takeDamage(enemy->getAttack());
+}
+
+void Battle::start() {
+
+  sleep(1);
+
+  std::cout << "\n"
+            << "A wild " << enemy->getName() << " appears!\n";
+
+  sleep(1);
+
+  while (!isOver()) {
+
+    showStats();
+    playerTurn();
+
+    if (isOver()) {
+      break;
     }
-}
 
-void Battle::enemyTurn(){
-    enemy->attackAction();
-    player->takeDamage(enemy->getAttack());
-}
-
-void Battle::start(){
     sleep(1);
-    std::cout << "A wild " << enemy->getName() << " appears!\n";
+
+    std::cout << "\n"
+              << "----- Enemy Turn -----\n";
+
+    enemyTurn();
+
     sleep(1);
-    while(!isOver()){
-        showStats();
-        playerTurn();
-        if(isOver()) break;
-        sleep(1);
-        enemyTurn();
-        sleep(1);
-    }
-    if(didPlayerWin()){
-        std::cout << "You defeated " << enemy->getName() << "!\n";
-        sleep(1);
-        player->gainExperience(enemy->getExpReward());
-    } else {
-        sleep(1);
-        std::cout << "You have been slain, Tarnished.\n";
-    }
+  }
+
+  std::cout << "\n";
+
+  if (didPlayerFlee()) {
+
+    std::cout << "You escaped safely.\n";
+
+    return;
+  }
+
+  if (didPlayerWin()) {
+
+    std::cout << "You defeated " << enemy->getName() << "!\n";
+
+    sleep(1);
+
+    player->gainExperience(enemy->getExpReward());
+
+  } else {
+
+    sleep(1);
+
+    std::cout << "You have been slain, Tarnished.\n";
+  }
 }
