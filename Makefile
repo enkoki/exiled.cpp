@@ -14,7 +14,8 @@ SRCS = main.cpp \
        src/entities/player/Player.cpp \
        src/entities/player/classes/Warrior.cpp \
        src/entities/player/classes/Samurai.cpp \
-       src/entities/npc/Enemy.cpp
+       src/entities/npc/Enemy.cpp \
+       src/entities/npc/EnemyFactory.cpp
 
 TARGET = game
 

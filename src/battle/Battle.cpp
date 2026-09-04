@@ -1,5 +1,4 @@
 #include "Battle.h"
-#include "ascii/Colors.h"
 #include "ascii/UI.h"
 #include <iostream>
 #include <unistd.h>
