@@ -12,4 +12,6 @@ namespace UI {
 
     void mainMenu();
 
+    void statusHeader();
+
 }
