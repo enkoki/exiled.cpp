@@ -1,5 +1,10 @@
 CXX = g++
-CXXFLAGS = -I include/entities -I include/battle -I include/entities/player -I include/entities/player/classes -I include/entities/npc
+CXXFLAGS = -I include \
+           -I include/entities \
+           -I include/battle \
+           -I include/entities/player \
+           -I include/entities/player/classes \
+           -I include/entities/npc
 
 SRCS = main.cpp \
        src/battle/Battle.cpp\
@@ -8,6 +13,7 @@ SRCS = main.cpp \
        src/entities/player/classes/Warrior.cpp \
        src/entities/player/classes/Samurai.cpp \
        src/entities/npc/Enemy.cpp
+       src/ascii/UI.cpp
 
 TARGET = game
 

@@ -4,6 +4,7 @@
 -Iinclude/entities/player
 -Iinclude/entities/player/classes
 -Iinclude/entities/npc
+-Iinclude/ascii
 -std=c++17
 -x
 c++
